@@ -12,7 +12,7 @@ It adds no sidebar, path input, or duplicate buttons.
 
 | Your task | Preferred action |
 |---|---|
-| View PNG, PDF, or TXT | Click the result file for DSH Web preview. |
+| Read Markdown (`.md`), PNG, PDF, or TXT | Click the result file for DSH Web preview. |
 | Open XLSX, PPTX, DOCX, or DOC without browser support | Use DSH's Windows application prompt or native open action. |
 | Edit a file in an installed Windows application | Explicitly choose the native action for the Windows default application. |
 | Locate a result file | Explicitly choose the native Explorer action to request file selection. |
@@ -29,6 +29,20 @@ Final desktop behavior still needs integration checks. See the [validation matri
 
 Desktop actions affect the Windows computer that runs DSH through WSL.
 A visitor using a phone does not open the file on that phone.
+
+## Markdown for developers and agent users
+
+Read an agent's plan, report, `README.md`, or `AGENTS.md` in the Web preview first.
+When you want to edit it, use the action beside the file:
+
+1. Click the filename for DSH Web preview. This does not launch a Windows application.
+2. Click `Open in <app>` to use the Windows default application for `.md` files.
+3. Open the adjacent menu to select another registered application.
+4. Choose **Show file location** in that menu to locate and select the file in Explorer.
+
+For example, Windows can associate `.md` with a Markdown editor or a code editor.
+The menu lists applications reported by Windows, not every installed program.
+This package does not install editors or change your default association.
 
 ## Who this is for
 
@@ -101,7 +115,7 @@ The installer does not stop or restart your service.
 3. Choose the native Windows default-application action only when you need it.
 4. Open the native split-button menu and choose **Show file location** to locate and select the file.
 
-PNG, PDF, and TXT can use browser previews.
+Markdown (`.md`), PNG, PDF, and TXT can use browser previews.
 For XLSX, PPTX, DOCX, and DOC without browser support, DSH should offer Windows opening instead.
 This plugin supplies the command bridge, not those prompts or previews.
 The [validation matrix](<VALIDATION.md>) separates required behavior from observed results.
@@ -189,6 +203,24 @@ node --check lib/host.mjs
 
 Automated checks do not prove desktop behavior or universal format support.
 See [Validation](<VALIDATION.md>) for commands and the required manual matrix.
+
+## Independent review
+
+Two independent model reviewers audited the frozen candidate:
+
+- **Architect pass:** Claude Opus 5.5 at high reasoning effort.
+- **Oracle pass:** GPT 6 Astra at high reasoning effort.
+
+Both reported PASS for the reviewed code. The architect pass also reviewed the final documentation.
+Review led to these changes:
+
+- The package no longer adds a UI panel.
+- The interop-socket check now probes a live socket.
+- The installer handles more profile formats.
+- The button labels match DSH.
+
+Missing files can still report success. See [Safety and limits](<#safety-and-limits>).
+Review is static reading plus supplied evidence. It does not replace a desktop test on your computer.
 
 ## License
 

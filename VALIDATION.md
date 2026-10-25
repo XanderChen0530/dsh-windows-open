@@ -20,9 +20,10 @@ No private files or screenshots form part of this release.
 | Case | Observed result |
 |---|---|
 | PNG, PDF, TXT, XLSX, PPTX, DOCX, MP4 | Clicking the file entered Web preview or its unsupported-format view. No native open request occurred. |
+| Markdown (`.md`) | Clicking entered Web preview with no native open request. The default-application request returned success. Selecting another listed application also returned success. The location request returned success. |
 | Explicit Windows open and location actions | Both requests returned success for the seven tested formats. |
 | Explorer selection | The Windows Shell API reported the matching test file selected for all seven formats. |
-| Office and text windows | Target document windows appeared. Spreadsheet and presentation windows used Protected View. No protection was bypassed. |
+| Office and text windows | Target document windows appeared. Spreadsheet and presentation windows used Protected View. The checks did not bypass any protection. |
 | Bridge control | Native location failed with the new bridge disabled and the earlier local adapter excluded. It succeeded after enabling this bridge. |
 
 A video-player window appeared, but actual video decoding and playback were not independently verified.
@@ -33,6 +34,7 @@ Other application versions, Windows layouts, and storage locations need separate
 
 本次使用无个人内容的合成文件，在 DSH 0.2.1-rc.2、WSL2、Windows 11 环境检查。
 普通点击七种文件均进入网页预览或不支持格式提示，没有触发原生打开请求。
+Markdown（`.md`）点击进入网页预览，未触发原生打开；默认应用打开、下拉菜单中另一应用打开、定位请求均返回成功。
 主动选择 Windows 打开及文件定位时，七种格式的请求均成功，Windows Shell API 确认选中了相应测试文件。
 Office 文档和文本编辑器的目标窗口出现；表格、演示文稿处于受保护视图，没有绕过保护。
 排除旧本地适配器后，禁用本桥会使原生定位失败，重新启用则成功。
